@@ -1,7 +1,6 @@
 package com.security.security.config.authentication;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -11,7 +10,6 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class ApiKeyAuthentication implements Authentication {
 
-    @Value("${the.secret}")
     private final String key; //Solo se crea un constructor para esta
     private boolean authenticated;
 
