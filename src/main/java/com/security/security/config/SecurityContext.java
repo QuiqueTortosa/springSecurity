@@ -21,7 +21,9 @@ public class SecurityContext {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.httpBasic()
                 .and()
-                .addFilterBefore(new ApiKeyFilter(key), BasicAuthenticationFilter.class)
+                //addFilterAt: Se suma al filtro que le indiquemos, tiene que pasar correctamenet los dos filtros
+                //addFilterBefore/After: Con que pase el primer filtro se autentifica correctamente
+                .addFilterAt(new ApiKeyFilter(key), BasicAuthenticationFilter.class)
                 .authorizeRequests().anyRequest().authenticated()   // authorization
                 //.and().authenticationManager()   or  by adding a bean of type AuthenticationManager
                 //.and().authenticationProvider() it doesn't override the AP, it adds one more to the collection
